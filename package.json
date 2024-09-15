@@ -2,13 +2,42 @@
     "private": true,
     "type": "module",
     "scripts": {
-        "dev": "vite",
-        "build": "vite build"
+        "lint": "eslint resources",
+        "lint:fix": "npm run lint -- --fix",
+        "prettier": "prettier resources --check",
+        "prettier:fix": "npm run prettier -- --write",
+        "format": "npm run lint:fix && npm run prettier:fix",
+        "build": "vite build",
+        "test": "vitest",
+        "start": "vite"
     },
     "devDependencies": {
+        "@eslint/eslintrc": "^3.1.0",
+        "@eslint/js": "^9.10.0",
+        "@faker-js/faker": "^9.0.1",
+        "@types/react": "^18.3.5",
+        "@types/react-dom": "^18.3.0",
+        "@typescript-eslint/eslint-plugin": "^8.5.0",
+        "autoprefixer": "^10.4.20",
         "axios": "^1.7.4",
+        "eslint-plugin-import": "^2.30.0",
+        "eslint-plugin-prettier": "^5.2.1",
+        "eslint-plugin-react": "^7.36.1",
+        "eslint-plugin-simple-import-sort": "^12.1.1",
+        "globals": "^15.9.0",
         "laravel-vite-plugin": "^1.0",
+        "lint-staged": "^15.2.10",
+        "nock": "^13.5.5",
+        "prettier": "^3.3.3",
         "tailwindcss": "^3.4.11",
-        "vite": "^5.0"
+        "typescript": "^5.6.2",
+        "vite": "^5.0",
+        "vitest": "^2.1.1"
+    },
+    "dependencies": {
+        "@vitejs/plugin-react": "^4.3.1",
+        "react": "^18.3.1",
+        "react-dom": "^18.3.1",
+        "react-router-dom": "^6.26.2"
     }
 }

@@ -1,0 +1,25 @@
+{
+  "compilerOptions": {
+    "types": ["vitest/globals"],
+    "target": "esnext",
+    "jsx": "react-jsx",
+    "module": "commonjs",
+    "esModuleInterop": true,
+    "forceConsistentCasingInFileNames": true,
+    "strict": true,
+    "skipLibCheck": true,
+    "baseUrl": "resources/spa/src",
+    "include": ["resources/spa/src/**/*.ts", "resources/spa/src/**/*.d.ts", "resources/spa/src/**/*.tsx"],
+    "paths": {
+      "@components/*": ["./resources/spa/src/components/*"],
+      "@pages/*": ["./resources/spa/src/pages/*"],
+      "@config/*": ["./resources/spa/src/config/*"],
+      "@contexts/*": ["./resources/spa/src/contexts/*"],
+      "@hooks/*": ["./resources/spa/src/hooks/*"],
+      "@api/*": ["./resources/spa/src/api/*"],
+      "@web-services/*": ["./resources/spa/src/web-services/*"],
+      "@spa/*": ["./resources/spa/src/*"],
+      "@images/*": ["./resources/spa/src/images/*"],
+    }
+  }
+}

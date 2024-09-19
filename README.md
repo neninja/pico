@@ -76,7 +76,10 @@ Outros comandos úteis durante o desenvolvimento:
 
 ```sh
 ./vendor/bin/sail php ./vendor/bin/pint
+./vendor/bin/sail composer format
+
 ./vendor/bin/sail php ./vendor/bin/pint --dirty
+./vendor/bin/sail composer format:staged
 ```
 
 #### Testes
@@ -84,7 +87,7 @@ Outros comandos úteis durante o desenvolvimento:
 ##### Ambiente
 
 ```sh
-./vendor/bin/sail psql
+./vendor/bin/sail mysql
 create database testing;
 ```
 

@@ -7,7 +7,9 @@
     "require": {
         "php": "^8.2",
         "laravel/framework": "^11.9",
-        "laravel/tinker": "^2.9"
+        "laravel/sanctum": "^4.0",
+        "laravel/tinker": "^2.9",
+        "spatie/laravel-query-builder": "^6.0"
     },
     "require-dev": {
         "barryvdh/laravel-ide-helper": "^3.1",
@@ -16,7 +18,7 @@
         "laravel/sail": "^1.26",
         "mockery/mockery": "^1.6",
         "nunomaduro/collision": "^8.0",
-        "phpunit/phpunit": "^11.0.1"
+        "pestphp/pest": "^3.0"
     },
     "autoload": {
         "psr-4": {
@@ -31,7 +33,9 @@
         }
     },
     "scripts": {
+        "pest": "vendor/bin/pest",
         "format": "vendor/bin/pint",
+        "format:staged": "vendor/bin/pint --dirty",
         "ide": [
             "@php artisan ide-helper:generate",
             "@php artisan ide-helper:models --write-mixin",

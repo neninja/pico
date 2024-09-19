@@ -19,7 +19,7 @@ class ArtifactController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(): JsonResponse
     {
         $artifacts = QueryBuilder::for(Artifact::class)
             ->allowedFilters([
@@ -36,11 +36,10 @@ class ArtifactController extends Controller
      */
     public function store(StoreArtifactRequest $request): JsonResponse
     {
-        $artifact = Artifact::updateOrCreate([
+        $artifact = Artifact::create([
             'catalog_id' => $request->input('catalog_id'),
-            'order' => $request->input('order'),
-        ], [
             'title' => $request->input('title'),
+            'order' => $request->input('order'),
         ]);
 
         return response()->json($artifact);
@@ -57,7 +56,7 @@ class ArtifactController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(UpdateArtifactRequest $request, Artifact $artifact)
+    public function update(UpdateArtifactRequest $request, Artifact $artifact): JsonResponse
     {
         $artifact->update($request->validated());
 

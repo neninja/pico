@@ -2,7 +2,6 @@
 
 namespace App\Policies;
 
-use App\Enums\UserRole;
 use App\Models\Artifact;
 use App\Models\User;
 
@@ -29,7 +28,7 @@ class ArtifactPolicy
      */
     public function create(User $user): bool
     {
-        return in_array($user->role, [UserRole::Admin, UserRole::Contributor]);
+        return $user->role->isAdminOrContributor();
     }
 
     /**
@@ -37,7 +36,7 @@ class ArtifactPolicy
      */
     public function update(User $user, Artifact $artifact): bool
     {
-        return in_array($user->role, [UserRole::Admin, UserRole::Contributor]);
+        return $user->role->isAdminOrContributor();
     }
 
     /**
@@ -45,7 +44,7 @@ class ArtifactPolicy
      */
     public function delete(User $user, Artifact $artifact): bool
     {
-        return in_array($user->role, [UserRole::Admin, UserRole::Contributor]);
+        return $user->role->isAdminOrContributor();
     }
 
     /**
@@ -53,7 +52,7 @@ class ArtifactPolicy
      */
     public function restore(User $user, Artifact $artifact): bool
     {
-        return in_array($user->role, [UserRole::Admin, UserRole::Contributor]);
+        return $user->role->isAdminOrContributor();
     }
 
     /**
@@ -61,6 +60,6 @@ class ArtifactPolicy
      */
     public function forceDelete(User $user, Artifact $artifact): bool
     {
-        return in_array($user->role, [UserRole::Admin, UserRole::Contributor]);
+        return $user->role->isAdminOrContributor();
     }
 }

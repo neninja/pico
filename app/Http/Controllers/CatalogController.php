@@ -23,7 +23,7 @@ class CatalogController extends Controller
     /**
      * Display a listing of the resource.
      */
-    #[ResponseFromApiResource(CatalogResource::class, Catalog::class)]
+    #[ResponseFromApiResource(CatalogResource::class, Catalog::class, collection: true)]
     public function index(): JsonResource
     {
         $catalogs = QueryBuilder::for(Catalog::class)

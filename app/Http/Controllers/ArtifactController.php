@@ -23,7 +23,7 @@ class ArtifactController extends Controller
     /**
      * Display a listing of the resource.
      */
-    #[ResponseFromApiResource(ArtifactResource::class, Artifact::class)]
+    #[ResponseFromApiResource(ArtifactResource::class, Artifact::class, collection: true)]
     public function index(): JsonResource
     {
         $artifacts = QueryBuilder::for(Artifact::class)

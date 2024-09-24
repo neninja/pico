@@ -41,6 +41,8 @@ sudo chmod 775 -R vendor
 ./vendor/bin/sail art migrate:fresh --seed
 ```
 
+> Com isso, alguns usuários serão criados a partir de `database/seeders/DatabaseSeeder.php`
+
 6. Baixe as dependências javascript
 ```sh
 ./vendor/bin/sail npm i
@@ -72,6 +74,7 @@ Outros comandos úteis durante o desenvolvimento:
 - `./vendor/bin/sail art queue:work`
 - `./vendor/bin/sail art optimize:clear`
 - `./vendor/bin/sail composer i`
+- `./vendor/bin/sail composer stan`
 
 ### Backend
 #### Linting
@@ -81,7 +84,7 @@ Outros comandos úteis durante o desenvolvimento:
 ./vendor/bin/sail composer format
 
 ./vendor/bin/sail php ./vendor/bin/pint --dirty
-./vendor/bin/sail composer format:staged
+./vendor/bin/sail composer format:dirty
 ```
 
 #### Testes
@@ -107,4 +110,4 @@ create database testing;
 - `./vendor/bin/sail npm start` inicia ambiente desenvolvimento (acesso em `localhost/app`)
 - `./vendor/bin/sail npm build` criação do arquivo para produção, sem servidor de desenvolvimento
 - `./vendor/bin/sail npm run format` para formatação e lint
-- `./vendor/bin/sail composer api:doc` para gerar uma documentação básica da api, disponível no html na pasta do projeto em `/public/docs/index.html`
+- `./vendor/bin/sail composer api:ref` para gerar a documentação básica de referência da api, disponível no html na pasta do projeto em `/public/docs/index.html`

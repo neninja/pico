@@ -36,8 +36,8 @@ describe('show', function () {
                 'id' => $artifact->id,
                 'title' => $artifact->title,
                 'order' => $artifact->order,
-                'catalog_id' => $artifact->catalog_id,
-            ]);
+            ])
+            ->assertJsonPath('data.catalog.id', $artifact->catalog_id);
     });
 
     it('throws unauthentication error', function () {

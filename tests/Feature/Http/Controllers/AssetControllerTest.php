@@ -36,8 +36,8 @@ describe('show', function () {
             ->assertJsonFragment([
                 'id' => $asset->id,
                 'paid_amount' => $asset->paid_amount,
-                'artifact_id' => $asset->artifact_id,
-            ]);
+            ])
+            ->assertJsonPath('data.artifact.id', $asset->artifact->catalog_id);
     });
 
     it('throws unauthentication error', function () {

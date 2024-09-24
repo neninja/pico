@@ -23,7 +23,7 @@ class AssetController extends Controller
     /**
      * Display a listing of the resource.
      */
-    #[ResponseFromApiResource(AssetResource::class, Asset::class)]
+    #[ResponseFromApiResource(AssetResource::class, Asset::class, collection: true)]
     public function index(): JsonResource
     {
         $asset = QueryBuilder::for(Asset::class)

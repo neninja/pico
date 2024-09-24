@@ -264,4 +264,11 @@ INTRO
     ],
 
     'routeMatcher' => \Knuckles\Scribe\Matching\RouteMatcher::class,
+
+    'response_calls' => [
+        'config' => [
+            'app.debug' => false,
+            'database.default' => 'sqlite',
+        ],
+    ],
 ];

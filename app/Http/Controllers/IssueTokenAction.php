@@ -3,9 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Exceptions\AuthException;
+use App\Http\Requests\IssueTokenRequest;
+use App\Http\Resources\UserResource;
 use App\Models\User;
 use Illuminate\Http\JsonResponse;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Knuckles\Scribe\Attributes\Group;
 
@@ -13,9 +14,11 @@ use Knuckles\Scribe\Attributes\Group;
 class IssueTokenAction extends Controller
 {
     /**
-     * Handle the incoming request.
+     * Handle the incoming auth request.
+     *
+     * @unauthenticated
      */
-    public function __invoke(Request $request): JsonResponse
+    public function __invoke(IssueTokenRequest $request): JsonResponse
     {
         $email = $request->input('email');
 
@@ -23,7 +26,7 @@ class IssueTokenAction extends Controller
         $user = User::where('email', $email)->first();
 
         if (! $user || ! Hash::check($request->input('password'), $user->password)) {
-            throw new AuthException('invalid_grant');
+            throw new AuthException;
         }
 
         $token = $user->createToken($request->userAgent());
@@ -32,7 +35,7 @@ class IssueTokenAction extends Controller
             'access_token' => $token->plainTextToken,
             'device' => $token->accessToken->name,
             'expires_at' => $token->accessToken->expires_at->toDateTimeString(),
-            'user' => $user,
+            'user' => new UserResource($user),
         ]);
     }
 }

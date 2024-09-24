@@ -29,5 +29,5 @@ test('throws error with invalida credentials', function () {
     $this->post('/api/auth', [
         'email' => $user->email,
         'password' => 'senhaerrada',
-    ])->assertForbidden();
+    ])->assertUnauthorized();
 });

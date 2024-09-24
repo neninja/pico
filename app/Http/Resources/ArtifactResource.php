@@ -18,7 +18,7 @@ class ArtifactResource extends JsonResource
             'id' => $this->id,
             'title' => $this->title,
             'order' => $this->order,
-            'catalog_id' => $this->catalog_id,
+            'catalog' => new CatalogResource($this->catalog),
         ];
     }
 }

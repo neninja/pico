@@ -17,6 +17,12 @@ class Asset extends Model
     use RestrictToUser;
     use SoftDeletes;
 
+    protected $fillable = [
+        'user_id',
+        'artifact_id',
+        'paid_amount',
+    ];
+
     protected $casts = [
         'paid_amount' => 'float:2',
     ];

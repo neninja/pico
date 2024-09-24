@@ -2,7 +2,6 @@
 
 namespace App\Policies;
 
-use App\Enums\UserRole;
 use App\Models\Asset;
 use App\Models\User;
 
@@ -37,7 +36,7 @@ class AssetPolicy
      */
     public function update(User $user, Asset $asset): bool
     {
-        return $user->id === $asset->user_id || $user->role === UserRole::Admin;
+        return $user->id === $asset->user_id || $user->role->isAdminOrContributor();
     }
 
     /**
@@ -45,7 +44,7 @@ class AssetPolicy
      */
     public function delete(User $user, Asset $asset): bool
     {
-        return $user->id === $asset->user_id || $user->role === UserRole::Admin;
+        return $user->id === $asset->user_id || $user->role->isAdminOrContributor();
     }
 
     /**
@@ -53,7 +52,7 @@ class AssetPolicy
      */
     public function restore(User $user, Asset $asset): bool
     {
-        return $user->id === $asset->user_id || $user->role === UserRole::Admin;
+        return $user->id === $asset->user_id || $user->role->isAdminOrContributor();
     }
 
     /**
@@ -61,6 +60,6 @@ class AssetPolicy
      */
     public function forceDelete(User $user, Asset $asset): bool
     {
-        return $user->id === $asset->user_id || $user->role === UserRole::Admin;
+        return $user->id === $asset->user_id || $user->role->isAdminOrContributor();
     }
 }

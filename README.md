@@ -107,4 +107,4 @@ create database testing;
 - `./vendor/bin/sail npm start` inicia ambiente desenvolvimento (acesso em `localhost/app`)
 - `./vendor/bin/sail npm build` criação do arquivo para produção, sem servidor de desenvolvimento
 - `./vendor/bin/sail npm run format` para formatação e lint
-- `./vendor/bin/sail art api:doc` para gerar uma documentação básica da api, disponível no html na pasta do projeto em `/public/docs/index.html`
+- `./vendor/bin/sail composer api:doc` para gerar uma documentação básica da api, disponível no html na pasta do projeto em `/public/docs/index.html`

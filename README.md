@@ -64,12 +64,12 @@ sudo chmod 775 -R vendor
 
 Outros comandos úteis durante o desenvolvimento:
 
-- `sail bash`
-- `sail psql`
-- `sail tinker`
-- `sail art queue:work`
-- `sail art optimize:clear`
-- `sail composer i`
+- `./vendor/bin/sail bash`
+- `./vendor/bin/sail psql`
+- `./vendor/bin/sail tinker`
+- `./vendor/bin/sail art queue:work`
+- `./vendor/bin/sail art optimize:clear`
+- `./vendor/bin/sail composer i`
 
 ### Backend
 #### Linting
@@ -102,6 +102,7 @@ create database testing;
 
 #### Front end
 
-- `npm start` inicia ambiente desenvolvimento (acesso em `localhost/app`)
-- `npm build` criação do arquivo para produção, sem servidor de desenvolvimento
-- `npm run format` para formatação e lint
+- `./vendor/bin/sail npm start` inicia ambiente desenvolvimento (acesso em `localhost/app`)
+- `./vendor/bin/sail npm build` criação do arquivo para produção, sem servidor de desenvolvimento
+- `./vendor/bin/sail npm run format` para formatação e lint
+- `./vendor/bin/sail art api:doc` para gerar uma documentação básica da api, disponível no html na pasta do projeto em `/public/docs/index.html`

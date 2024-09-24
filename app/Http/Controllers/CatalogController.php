@@ -4,11 +4,15 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\StoreCatalogRequest;
 use App\Http\Requests\UpdateCatalogRequest;
+use App\Http\Resources\CatalogResource;
 use App\Models\Catalog;
-use Illuminate\Http\JsonResponse;
+use Illuminate\Http\Resources\Json\JsonResource;
+use Knuckles\Scribe\Attributes\Group;
+use Knuckles\Scribe\Attributes\ResponseFromApiResource;
 use Spatie\QueryBuilder\AllowedFilter;
 use Spatie\QueryBuilder\QueryBuilder;
 
+#[Group('Catalog', 'Gerenciamento de coleções de artefatos')]
 class CatalogController extends Controller
 {
     public function __construct()
@@ -19,7 +23,8 @@ class CatalogController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index(): JsonResponse
+    #[ResponseFromApiResource(CatalogResource::class, Catalog::class)]
+    public function index(): JsonResource
     {
         $catalogs = QueryBuilder::for(Catalog::class)
             ->allowedFilters([
@@ -28,13 +33,14 @@ class CatalogController extends Controller
             ->allowedSorts('created_at')
             ->paginate(request()->query('limit', self::DEFAULT_PAGINATION_LIMIT));
 
-        return response()->json($catalogs);
+        return CatalogResource::collection($catalogs);
     }
 
     /**
      * Store a newly created resource in storage.
      */
-    public function store(StoreCatalogRequest $request): JsonResponse
+    #[ResponseFromApiResource(CatalogResource::class, Catalog::class)]
+    public function store(StoreCatalogRequest $request): JsonResource
     {
         $catalog = Catalog::create([
             'title' => $request->input('title'),
@@ -42,34 +48,37 @@ class CatalogController extends Controller
             'artifact_plural_label' => $request->input('artifact_plural_label'),
         ]);
 
-        return response()->json($catalog);
+        return new CatalogResource($catalog);
     }
 
     /**
      * Display the specified resource.
      */
-    public function show(Catalog $catalog): JsonResponse
+    #[ResponseFromApiResource(CatalogResource::class, Catalog::class)]
+    public function show(Catalog $catalog): JsonResource
     {
-        return response()->json($catalog);
+        return new CatalogResource($catalog);
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(UpdateCatalogRequest $request, Catalog $catalog): JsonResponse
+    #[ResponseFromApiResource(CatalogResource::class, Catalog::class)]
+    public function update(UpdateCatalogRequest $request, Catalog $catalog): JsonResource
     {
         $catalog->update($request->validated());
 
-        return response()->json($catalog);
+        return new CatalogResource($catalog);
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Catalog $catalog): JsonResponse
+    #[ResponseFromApiResource(CatalogResource::class, Catalog::class)]
+    public function destroy(Catalog $catalog): JsonResource
     {
         $catalog->delete();
 
-        return response()->json($catalog);
+        return new CatalogResource($catalog);
     }
 }
